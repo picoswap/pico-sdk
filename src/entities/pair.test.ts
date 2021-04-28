@@ -4,8 +4,8 @@ import { computePairAddress, Pair } from './pair'
 
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {
-    const tokenA = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
-    const tokenB = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
+    const tokenA = new Token(ChainId.EDGEWARE, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
+    const tokenB = new Token(ChainId.EDGEWARE, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
     const result = computePairAddress({
       factoryAddress: '0x1111111111111111111111111111111111111111',
       tokenA,
@@ -15,8 +15,8 @@ describe('computePairAddress', () => {
     expect(result).toEqual('0xb50b5182D6a47EC53a469395AF44e371d7C76ed4')
   })
   it('should give same result regardless of token order', () => {
-    const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
-    const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
+    const USDC = new Token(ChainId.EDGEWARE, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
+    const DAI = new Token(ChainId.EDGEWARE, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
     let tokenA = USDC
     let tokenB = DAI
     const resultA = computePairAddress({
@@ -38,12 +38,12 @@ describe('computePairAddress', () => {
 })
 
 describe('Pair', () => {
-  const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
-  const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
+  const USDC = new Token(ChainId.EDGEWARE, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
+  const DAI = new Token(ChainId.EDGEWARE, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
 
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
-      expect(() => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WETH9[ChainId.RINKEBY], '100'))).toThrow(
+      expect(() => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WETH9[ChainId.BERESHEET], '100'))).toThrow(
         'CHAIN_IDS'
       )
     })
@@ -118,7 +118,7 @@ describe('Pair', () => {
     })
 
     it('throws if invalid token', () => {
-      expect(() => pair.priceOf(WETH9[ChainId.MAINNET])).toThrow('TOKEN')
+      expect(() => pair.priceOf(WETH9[ChainId.EDGEWARE])).toThrow('TOKEN')
     })
   })
 
@@ -134,28 +134,28 @@ describe('Pair', () => {
 
     it('throws if not in the pair', () => {
       expect(() =>
-        new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100')).reserveOf(WETH9[ChainId.MAINNET])
+        new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100')).reserveOf(WETH9[ChainId.EDGEWARE])
       ).toThrow('TOKEN')
     })
   })
 
   describe('#chainId', () => {
     it('returns the token0 chainId', () => {
-      expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).chainId).toEqual(ChainId.MAINNET)
-      expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '100')).chainId).toEqual(ChainId.MAINNET)
+      expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).chainId).toEqual(ChainId.EDGEWARE)
+      expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '100')).chainId).toEqual(ChainId.EDGEWARE)
     })
   })
   describe('#involvesToken', () => {
     expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).involvesToken(USDC)).toEqual(true)
     expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).involvesToken(DAI)).toEqual(true)
     expect(
-      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).involvesToken(WETH9[ChainId.MAINNET])
+      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100')).involvesToken(WETH9[ChainId.EDGEWARE])
     ).toEqual(false)
   })
   describe('miscellaneous', () => {
     it('getLiquidityMinted:0', async () => {
-      const tokenA = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000001', 18)
-      const tokenB = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000002', 18)
+      const tokenA = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000001', 18)
+      const tokenB = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000002', 18)
       const pair = new Pair(new TokenAmount(tokenA, '0'), new TokenAmount(tokenB, '0'))
 
       expect(() => {
@@ -184,8 +184,8 @@ describe('Pair', () => {
     })
 
     it('getLiquidityMinted:!0', async () => {
-      const tokenA = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000001', 18)
-      const tokenB = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000002', 18)
+      const tokenA = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000001', 18)
+      const tokenB = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000002', 18)
       const pair = new Pair(new TokenAmount(tokenA, '10000'), new TokenAmount(tokenB, '10000'))
 
       expect(
@@ -200,8 +200,8 @@ describe('Pair', () => {
     })
 
     it('getLiquidityValue:!feeOn', async () => {
-      const tokenA = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000001', 18)
-      const tokenB = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000002', 18)
+      const tokenA = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000001', 18)
+      const tokenB = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000002', 18)
       const pair = new Pair(new TokenAmount(tokenA, '1000'), new TokenAmount(tokenB, '1000'))
 
       {
@@ -241,8 +241,8 @@ describe('Pair', () => {
     })
 
     it('getLiquidityValue:feeOn', async () => {
-      const tokenA = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000001', 18)
-      const tokenB = new Token(ChainId.RINKEBY, '0x0000000000000000000000000000000000000002', 18)
+      const tokenA = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000001', 18)
+      const tokenB = new Token(ChainId.BERESHEET, '0x0000000000000000000000000000000000000002', 18)
       const pair = new Pair(new TokenAmount(tokenA, '1000'), new TokenAmount(tokenB, '1000'))
 
       const liquidityValue = pair.getLiquidityValue(

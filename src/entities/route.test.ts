@@ -2,9 +2,9 @@ import { Token, WETH9, ChainId, TokenAmount, ETHER } from '@picoswap/sdk-core'
 import { Pair, Route } from './index'
 
 describe('Route', () => {
-  const token0 = new Token(ChainId.MAINNET, '0x0000000000000000000000000000000000000001', 18, 't0')
-  const token1 = new Token(ChainId.MAINNET, '0x0000000000000000000000000000000000000002', 18, 't1')
-  const weth = WETH9[ChainId.MAINNET]
+  const token0 = new Token(ChainId.EDGEWARE, '0x0000000000000000000000000000000000000001', 18, 't0')
+  const token1 = new Token(ChainId.EDGEWARE, '0x0000000000000000000000000000000000000002', 18, 't1')
+  const weth = WETH9[ChainId.EDGEWARE]
   const pair_0_1 = new Pair(new TokenAmount(token0, '100'), new TokenAmount(token1, '200'))
   const pair_0_weth = new Pair(new TokenAmount(token0, '100'), new TokenAmount(weth, '100'))
   const pair_1_weth = new Pair(new TokenAmount(token1, '175'), new TokenAmount(weth, '100'))
@@ -15,7 +15,7 @@ describe('Route', () => {
     expect(route.path).toEqual([token0, token1])
     expect(route.input).toEqual(token0)
     expect(route.output).toEqual(token1)
-    expect(route.chainId).toEqual(ChainId.MAINNET)
+    expect(route.chainId).toEqual(ChainId.EDGEWARE)
   })
 
   it('can have a token as both input and output', () => {
