@@ -5,7 +5,13 @@ import { computePairAddress, Pair } from './pair'
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {
     const tokenA = new Token(ChainId.EDGEWARE, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
-    const tokenB = new Token(ChainId.EDGEWARE, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
+    const tokenB = new Token(
+      ChainId.EDGEWARE,
+      '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+      18,
+      'DAI',
+      'DAI Stablecoin'
+    )
     const result = computePairAddress({
       factoryAddress: '0x1111111111111111111111111111111111111111',
       tokenA,
