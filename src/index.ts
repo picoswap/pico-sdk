@@ -2,14 +2,18 @@ import JSBI from 'jsbi'
 export { JSBI }
 
 export {
+  BigintIsh,
   ChainId,
   Currency,
   CurrencyAmount,
   currencyEquals,
   ETHER,
   Fraction,
+  MaxUint256,
+  Pair,
   Percent,
   Price,
+  Route,
   sortedInsert,
   Token,
   TokenAmount,
