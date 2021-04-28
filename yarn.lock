@@ -1708,10 +1708,10 @@
     typescript "^4.2.4"
     web3 "^1.3.5"
 
-"@picoswap/sdk-core@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@picoswap/sdk-core/-/sdk-core-1.0.11.tgz#40aec388bde583c6f71096482bc6262b5f532b62"
-  integrity sha512-SgDfBJKOh7mef93obc5qdtgZbffj5bspi8hrEWlNgieKYGNFYX6viTy5NDTTyg0fehxVZnx32kYrSW0dvUnQ3Q==
+"@picoswap/sdk-core@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@picoswap/sdk-core/-/sdk-core-1.0.12.tgz#abf4ab6ab9fdfd413f95bfed5bc3a51220dc5755"
+  integrity sha512-ZA8MyphUw1QsLWZZ8QyixBY+7u75KbSxaWZU2gdVMxUQ/3+/OnHiH0brkZOdzRwkG5Nhqbwg4ZNwFLSIDk84tA==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
