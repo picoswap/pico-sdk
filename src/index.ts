@@ -7,7 +7,7 @@ export {
   Currency,
   CurrencyAmount,
   currencyEquals,
-  ETHER,
+  EDG_CURRENCY,
   Fraction,
   MaxUint256,
   Percent,

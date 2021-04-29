@@ -1,4 +1,4 @@
-import { Token, WETH9, ChainId, TokenAmount, ETHER } from '@picoswap/sdk-core'
+import { Token, WETH9, ChainId, TokenAmount, EDG_CURRENCY } from '@picoswap/sdk-core'
 import { Pair, Route } from './index'
 
 describe('Route', () => {
@@ -25,17 +25,17 @@ describe('Route', () => {
     expect(route.output).toEqual(weth)
   })
 
-  it('supports ether input', () => {
-    const route = new Route([pair_0_weth], ETHER)
+  it('supports edg input', () => {
+    const route = new Route([pair_0_weth], EDG_CURRENCY)
     expect(route.pairs).toEqual([pair_0_weth])
-    expect(route.input).toEqual(ETHER)
+    expect(route.input).toEqual(EDG_CURRENCY)
     expect(route.output).toEqual(token0)
   })
 
-  it('supports ether output', () => {
-    const route = new Route([pair_0_weth], token0, ETHER)
+  it('supports edg output', () => {
+    const route = new Route([pair_0_weth], token0, EDG_CURRENCY)
     expect(route.pairs).toEqual([pair_0_weth])
     expect(route.input).toEqual(token0)
-    expect(route.output).toEqual(ETHER)
+    expect(route.output).toEqual(EDG_CURRENCY)
   })
 })

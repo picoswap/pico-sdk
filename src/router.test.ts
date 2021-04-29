@@ -2,7 +2,7 @@ import JSBI from 'jsbi'
 import { Pair, Route, Trade } from './entities'
 import { Router } from './router'
 import invariant from 'tiny-invariant'
-import { ChainId, CurrencyAmount, ETHER, Percent, Token, TokenAmount, WETH9 } from '@picoswap/sdk-core'
+import { ChainId, CurrencyAmount, EDG_CURRENCY, Percent, Token, TokenAmount, WETH9 } from '@picoswap/sdk-core'
 
 function checkDeadline(deadline: string[] | string): void {
   expect(typeof deadline).toBe('string')
@@ -21,9 +21,9 @@ describe('Router', () => {
 
   describe('#swapCallParameters', () => {
     describe('exact in', () => {
-      it('ether to token1', () => {
+      it('edg to token1', () => {
         const result = Router.swapCallParameters(
-          Trade.exactIn(new Route([pair_weth_0, pair_0_1], ETHER, token1), CurrencyAmount.ether(JSBI.BigInt(100))),
+          Trade.exactIn(new Route([pair_weth_0, pair_0_1], EDG_CURRENCY, token1), CurrencyAmount.edg(JSBI.BigInt(100))),
           { ttl: 50, recipient: '0x0000000000000000000000000000000000000004', allowedSlippage: new Percent('1', '100') }
         )
         expect(result.methodName).toEqual('swapExactETHForTokens')
@@ -38,7 +38,7 @@ describe('Router', () => {
 
       it('deadline specified', () => {
         const result = Router.swapCallParameters(
-          Trade.exactIn(new Route([pair_weth_0, pair_0_1], ETHER, token1), CurrencyAmount.ether(JSBI.BigInt(100))),
+          Trade.exactIn(new Route([pair_weth_0, pair_0_1], EDG_CURRENCY, token1), CurrencyAmount.edg(JSBI.BigInt(100))),
           {
             deadline: 50,
             recipient: '0x0000000000000000000000000000000000000004',
@@ -55,9 +55,9 @@ describe('Router', () => {
         expect(result.value).toEqual('0x64')
       })
 
-      it('token1 to ether', () => {
+      it('token1 to edg', () => {
         const result = Router.swapCallParameters(
-          Trade.exactIn(new Route([pair_0_1, pair_weth_0], token1, ETHER), new TokenAmount(token1, JSBI.BigInt(100))),
+          Trade.exactIn(new Route([pair_0_1, pair_weth_0], token1, EDG_CURRENCY), new TokenAmount(token1, JSBI.BigInt(100))),
           { ttl: 50, recipient: '0x0000000000000000000000000000000000000004', allowedSlippage: new Percent('1', '100') }
         )
         expect(result.methodName).toEqual('swapExactTokensForETH')
@@ -87,9 +87,9 @@ describe('Router', () => {
       })
     })
     describe('exact out', () => {
-      it('ether to token1', () => {
+      it('edg to token1', () => {
         const result = Router.swapCallParameters(
-          Trade.exactOut(new Route([pair_weth_0, pair_0_1], ETHER, token1), new TokenAmount(token1, JSBI.BigInt(100))),
+          Trade.exactOut(new Route([pair_weth_0, pair_0_1], EDG_CURRENCY, token1), new TokenAmount(token1, JSBI.BigInt(100))),
           { ttl: 50, recipient: '0x0000000000000000000000000000000000000004', allowedSlippage: new Percent('1', '100') }
         )
         expect(result.methodName).toEqual('swapETHForExactTokens')
@@ -101,9 +101,9 @@ describe('Router', () => {
         expect(result.value).toEqual('0x80')
         checkDeadline(result.args[result.args.length - 1])
       })
-      it('token1 to ether', () => {
+      it('token1 to edg', () => {
         const result = Router.swapCallParameters(
-          Trade.exactOut(new Route([pair_0_1, pair_weth_0], token1, ETHER), CurrencyAmount.ether(JSBI.BigInt(100))),
+          Trade.exactOut(new Route([pair_0_1, pair_weth_0], token1, EDG_CURRENCY), CurrencyAmount.edg(JSBI.BigInt(100))),
           { ttl: 50, recipient: '0x0000000000000000000000000000000000000004', allowedSlippage: new Percent('1', '100') }
         )
         expect(result.methodName).toEqual('swapTokensForExactETH')
@@ -134,9 +134,9 @@ describe('Router', () => {
     })
     describe('supporting fee on transfer', () => {
       describe('exact in', () => {
-        it('ether to token1', () => {
+        it('edg to token1', () => {
           const result = Router.swapCallParameters(
-            Trade.exactIn(new Route([pair_weth_0, pair_0_1], ETHER, token1), CurrencyAmount.ether(JSBI.BigInt(100))),
+            Trade.exactIn(new Route([pair_weth_0, pair_0_1], EDG_CURRENCY, token1), CurrencyAmount.edg(JSBI.BigInt(100))),
             {
               ttl: 50,
               recipient: '0x0000000000000000000000000000000000000004',
@@ -153,9 +153,9 @@ describe('Router', () => {
           expect(result.value).toEqual('0x64')
           checkDeadline(result.args[result.args.length - 1])
         })
-        it('token1 to ether', () => {
+        it('token1 to edg', () => {
           const result = Router.swapCallParameters(
-            Trade.exactIn(new Route([pair_0_1, pair_weth_0], token1, ETHER), new TokenAmount(token1, JSBI.BigInt(100))),
+            Trade.exactIn(new Route([pair_0_1, pair_weth_0], token1, EDG_CURRENCY), new TokenAmount(token1, JSBI.BigInt(100))),
             {
               ttl: 50,
               recipient: '0x0000000000000000000000000000000000000004',
@@ -195,11 +195,11 @@ describe('Router', () => {
         })
       })
       describe('exact out', () => {
-        it('ether to token1', () => {
+        it('edg to token1', () => {
           expect(() =>
             Router.swapCallParameters(
               Trade.exactOut(
-                new Route([pair_weth_0, pair_0_1], ETHER, token1),
+                new Route([pair_weth_0, pair_0_1], EDG_CURRENCY, token1),
                 new TokenAmount(token1, JSBI.BigInt(100))
               ),
               {
@@ -211,10 +211,10 @@ describe('Router', () => {
             )
           ).toThrow('EXACT_OUT_FOT')
         })
-        it('token1 to ether', () => {
+        it('token1 to edg', () => {
           expect(() =>
             Router.swapCallParameters(
-              Trade.exactOut(new Route([pair_0_1, pair_weth_0], token1, ETHER), CurrencyAmount.ether(JSBI.BigInt(100))),
+              Trade.exactOut(new Route([pair_0_1, pair_weth_0], token1, EDG_CURRENCY), CurrencyAmount.edg(JSBI.BigInt(100))),
               {
                 ttl: 50,
                 recipient: '0x0000000000000000000000000000000000000004',

@@ -1,4 +1,4 @@
-import { ChainId, Currency, ETHER, Price, Token, WETH9 } from '@picoswap/sdk-core'
+import { ChainId, Currency, EDG_CURRENCY, Price, Token, WETH9 } from '@picoswap/sdk-core'
 import invariant from 'tiny-invariant'
 
 import { Pair } from './pair'
@@ -33,13 +33,13 @@ export class Route {
 
     invariant(
       (input instanceof Token && pairs[0].involvesToken(input)) ||
-        (input === ETHER && weth && pairs[0].involvesToken(weth)),
+        (input === EDG_CURRENCY && weth && pairs[0].involvesToken(weth)),
       'INPUT'
     )
     invariant(
       typeof output === 'undefined' ||
         (output instanceof Token && pairs[pairs.length - 1].involvesToken(output)) ||
-        (output === ETHER && weth && pairs[pairs.length - 1].involvesToken(weth)),
+        (output === EDG_CURRENCY && weth && pairs[pairs.length - 1].involvesToken(weth)),
       'OUTPUT'
     )
 
