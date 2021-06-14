@@ -30,7 +30,7 @@
     "tiny-warning": "^1.0.3"
   },
   "devDependencies": {
-    "@picoswap/pico-v2-core": "^1.0.0",
+    "@picoswap/pico-v2-core": "^2.0.2",
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
     "tsdx": "^0.14.1"
