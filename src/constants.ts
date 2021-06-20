@@ -1,6 +1,6 @@
 import JSBI from 'jsbi'
 
-export const FACTORY_ADDRESS = '0x072264cD573d2cee4844b17Fe0456F3fDA598124'
+export const FACTORY_ADDRESS = '0x750fa40722355176CF4fAEA7d3ED297aAd4A611C'
 
 export const INIT_CODE_HASH = '0x409d590c4ceb788bbd5d539615fdbf3eccd8dc60df1cacec655dbaf4b0067110'
 

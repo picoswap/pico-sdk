@@ -1451,20 +1451,20 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-3.4.1.tgz#03c891fec7f93be0ae44ed74e57a122a38732ce7"
   integrity sha512-cUriqMauq1ylzP2TxePNdPqkwI7Le3Annh4K9rrpvKfSBB/bdW+Iu1ihBaTIABTAAJ85LmKL5SSPPL9ry8d1gQ==
 
-"@picoswap/pico-v2-core@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@picoswap/pico-v2-core/-/pico-v2-core-2.0.2.tgz#90a77ad91822500d6c9a6b95f2a0e9cb19ecbb6f"
-  integrity sha512-MOWPc01A78xRwVuUoyvntaPghq5EC0+kDwLnIEeaIlM/V9yAfRhMxAPsdtl20ahlvGrD7RaSMSBbbDOBQIOBVA==
+"@picoswap/pico-v2-core@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@picoswap/pico-v2-core/-/pico-v2-core-2.0.4.tgz#44323f944a616c7ee23f514edc24dfb3b8ade104"
+  integrity sha512-9d9yo4RNF5rk+A+QNtN+MdW1obexv/InCZROdNaP2PiHaIUuVApS1eIZY66ERvffYWYe6Tp/2rlilNzC8U5cBQ==
   dependencies:
     "@nomiclabs/hardhat-waffle" "^2.0.1"
     "@openzeppelin/contracts" "^3.4.0"
     "@uniswap/v2-core" "^1.0.1"
     chai "^4.3.4"
 
-"@picoswap/sdk-core@^1.0.16":
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/@picoswap/sdk-core/-/sdk-core-1.0.16.tgz#be056441a48657759e90dbd35f2c9d3190e5d321"
-  integrity sha512-2aplr4B6taJgOX63GKcxtIAwJIugW36XwfXfDZqX2INI2PsB5vEGA1/fmcNK7m5V/d6+FGE9wKLo3VBoQ0cdww==
+"@picoswap/sdk-core@^1.0.18":
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@picoswap/sdk-core/-/sdk-core-1.0.18.tgz#4178ff99f1ed5703af5ee0ad4a164abcd83ceeb5"
+  integrity sha512-h23ks/NpJXr7TWspC5dN4nZ716vC6hx9qatydOEVrubftOq2JnTrkgeEQ08+WaRaOXKZwhHtowYmeJ89sKtEug==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
